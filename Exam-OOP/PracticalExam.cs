@@ -40,7 +40,7 @@ namespace Exam_OOP
                     Console.WriteLine("Wrong");
                 }
             }
-
+            Console.Clear();
             for (int i = 0; i < Questions.Count; i++)
             {
                 var q = Questions[i];
