@@ -12,12 +12,41 @@ namespace Exam_OOP
         {
         }
 
+      
         public override void ShowExam()
         {
-            Console.WriteLine("\n--- Practical Exam ---");
+            Console.WriteLine("\n--- Final Exam ---");
+            float totalMarks = 0;
+            var userAnswers = new List<Answers?>();
+
             foreach (var q in Questions)
             {
                 q.ShowQuestion();
+
+
+                int userChoice;
+                do
+                {
+                    Console.Write("Your Answer (enter number): ");
+                } while (!int.TryParse(Console.ReadLine(), out userChoice));
+
+                if (q.RightAnswer != null && q.RightAnswer.AnswerId == userChoice)
+                {
+                    Console.WriteLine("Correct");
+                    totalMarks += q.Mark;
+                }
+                else
+                {
+                    Console.WriteLine("Wrong");
+                }
+            }
+
+            for (int i = 0; i < Questions.Count; i++)
+            {
+                var q = Questions[i];
+                var userAns = userAnswers[i];
+
+                Console.WriteLine($"Question {i + 1}: {q.BodyOfQuestion}");
                 Console.WriteLine($"Correct Answer: {q.RightAnswer?.AnswerText}\n");
             }
         }

@@ -20,6 +20,7 @@ namespace Exam_OOP
         {
             Console.WriteLine("\n--- Final Exam ---");
             float totalMarks = 0;
+            var userAnswers = new List<Answers?>();
 
             foreach (var q in Questions)
             {
@@ -43,7 +44,17 @@ namespace Exam_OOP
                 }
             }
 
-            Console.WriteLine($"Your Grade: {totalMarks}/{Questions.Sum(q => q.Mark)}");
+            Console.Clear();
+
+            for (int i = 0; i < Questions.Count; i++)
+            {
+                var q = Questions[i];
+                var userAns = userAnswers[i];
+
+                Console.WriteLine($"Question {i + 1}: Your Answer = {userAns?.AnswerText} | Correct Answer = {q.RightAnswer?.AnswerText}");
+            }
+
+            Console.WriteLine($"\nYour Total Grade: {totalMarks}/{Questions.Sum(q => q.Mark)}");
         }
 
         public override void CreateExamQuestions()
