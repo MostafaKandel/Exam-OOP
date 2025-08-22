@@ -26,14 +26,17 @@ namespace Exam_OOP
             {
                 q.ShowQuestion();
 
-
                 int userChoice;
+                Answers? selectedAnswer;
                 do
                 {
                     Console.Write("Your Answer (enter number): ");
-                } while (!int.TryParse(Console.ReadLine(), out userChoice));
+                } while (!int.TryParse(Console.ReadLine(), out userChoice) ||
+                         (selectedAnswer = q.AnswerList.FirstOrDefault(a => a.AnswerId == userChoice)) == null);
 
-                if (q.RightAnswer != null && q.RightAnswer.AnswerId == userChoice)
+                userAnswers.Add(selectedAnswer);
+
+                if (q.RightAnswer != null && q.RightAnswer.AnswerId == selectedAnswer.AnswerId)
                 {
                     Console.WriteLine("Correct");
                     totalMarks += q.Mark;
@@ -42,6 +45,8 @@ namespace Exam_OOP
                 {
                     Console.WriteLine("Wrong");
                 }
+
+                Console.WriteLine();
             }
 
             Console.Clear();
@@ -56,6 +61,7 @@ namespace Exam_OOP
 
             Console.WriteLine($"\nYour Total Grade: {totalMarks}/{Questions.Sum(q => q.Mark)}");
         }
+        
 
         public override void CreateExamQuestions()
 

@@ -15,9 +15,9 @@ namespace Exam_OOP
       
         public override void ShowExam()
         {
-            Console.WriteLine("\n--- Final Exam ---");
-            float totalMarks = 0;
-            var userAnswers = new List<Answers?>();
+            Console.WriteLine("\n--- practical Exam ---");
+            
+            
 
             foreach (var q in Questions)
             {
@@ -33,7 +33,7 @@ namespace Exam_OOP
                 if (q.RightAnswer != null && q.RightAnswer.AnswerId == userChoice)
                 {
                     Console.WriteLine("Correct");
-                    totalMarks += q.Mark;
+                   
                 }
                 else
                 {
@@ -44,7 +44,6 @@ namespace Exam_OOP
             for (int i = 0; i < Questions.Count; i++)
             {
                 var q = Questions[i];
-                var userAns = userAnswers[i];
 
                 Console.WriteLine($"Question {i + 1}: {q.BodyOfQuestion}");
                 Console.WriteLine($"Correct Answer: {q.RightAnswer?.AnswerText}\n");
